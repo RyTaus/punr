@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Browse Puns</title>
+    <link rel="stylesheet" href="/resources/styles/styles.css">
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
+      <a href="/">Home</a>
+      <a href="/browse">Browse</a>
+      <a href="#contact">Profile</a>
+      <a href="#about">About</a>
+    </div>
+
+    <form name="posting" action="/browse" method="post">
+      <label>Name: </label>
+      <input type="text" id="username" name='op_name' maxlength="20">
+      <br><br>
+      <textarea id="post_text" rows="5" cols="40" maxlength="140" placeholder="Enter your pun" name='post_text'></textarea>
+      <input id="ok_button" type="submit" value="OK">
+    </form>
+
+    <h2>Puns: </h2>
+    <div id="posts_section">
+      {%for p in post_list%}
+        <div class="post_container">
+          <h3 class="posts">{{p.op_name}}</h3> {{p.post_date}}
+          <p class="posts">{{p.post_text}}</p>
+        </div>
+      {%endfor%}
+    </div>
+  </body>
+</html>

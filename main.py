@@ -16,6 +16,8 @@
 #
 import webapp2
 import jinja2
+from posts import Post
+from datetime import datetime
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 class MainHandler(webapp2.RequestHandler):
@@ -23,6 +25,34 @@ class MainHandler(webapp2.RequestHandler):
         template = env.get_template('index.html')
         self.response.write(template.render())
 
+class BrowseHandler(webapp2.RequestHandler):
+    def get(self):
+        posts_query = Post.query()
+        posts_result = posts_query.fetch(limit=10)
+        vars = {
+            'post_list': posts_result
+        }
+        template = env.get_template('browse.html')
+        self.response.write(template.render(vars))
+
+    def post(self):
+        op = Post(
+            op_name=self.request.get('op_name'),
+            post_text=self.request.get('post_text'),
+            post_date=datetime.now())
+
+        if op.op_name != "" and op.post_text != "":
+            key = op.put()
+
+        posts_query = Post.query()
+        posts_result = posts_query.fetch(limit=10)
+        vars = {
+            'post_list': posts_result
+        }
+        template = env.get_template('browse.html')
+        self.response.write(template.render(vars))
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/browse', BrowseHandler)
 ], debug=True)
