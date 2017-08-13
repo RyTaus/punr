@@ -8,10 +8,14 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+- url: /resources
+  static_dir: resources
 
 - url: .*
   script: main.app
 
 libraries:
+- name: jinja2
+  version: latest
 - name: webapp2
   version: "2.5.2"
