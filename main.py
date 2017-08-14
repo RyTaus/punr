@@ -91,7 +91,6 @@ class PostHandler(webapp2.RequestHandler):
     def post(self):
         post = Post(
             content=self.request.get('content'),
-            time= datetime.now(),
             words_punned= [kw.strip().lower() for kw in self.request.get('keywords').split(',')],
             poster_name= users.get_current_user().nickname(),
             score= 0
@@ -103,8 +102,14 @@ class PostHandler(webapp2.RequestHandler):
         user = User.query(User.email == user).get()
 
         user.posts.insert(0, key)
+
+        def redirect():
+            self.redirect('/browse')
+
         user.put()
-        self.redirect('/browse')
+        time.sleep(.2)
+        redirect()
+
 
 class BrowseHandler(webapp2.RequestHandler):
     def display_page(self, query):
