@@ -20,7 +20,7 @@
     <div id="puns_section">
       {%for post in posts%}
         <div class="puns_container">
-          <h3 class="pun">{{ post.poster_name }} </h3> <span class="post_time">@ {{ post.time }} </span>
+          <h3 class="pun">{{ user }} </h3> <span class="post_time">@ {{ post.time }} </span>
           <p class="pun"> {{ post.content }} </p>
         </div>
       {% endfor %}
