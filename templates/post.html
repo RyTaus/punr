@@ -16,12 +16,13 @@
     </div>
 
     <form action="/post" method="post">
-      Comment: <input type="text" name="content" placeholder="Comment..." maxlength="140"></input>
+      <h2 class="prompt_text">Comment:</h2>
+      <textArea type="text" name="content" placeholder="Comment..." maxlength="140" rows="5" cols="40"></textArea>
       <br>
-      Words Punned (split by commas): <input type="text" name="keywords"></input>
+      <h3 class="prompt_text">Words Punned (split by commas):</h3>
+      <input type="text" name="keywords"></input>
       <br>
-
-      <input type="submit" value="Submit"></input>
+      <input class="button" type="submit" value="Submit"></input>
 
     </form>
   </body>

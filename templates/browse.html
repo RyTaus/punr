@@ -17,11 +17,12 @@
     <div>
       <form action="/browse" method="post">
         <input type="hidden" name="kind" value="search"></input>
-        search for puns: <input type="text" name="q" value=""></input>
+        <h2 class="prompt_text">search for puns: </h2>
+        <input type="text" name="q" value=""></input>
         <br>
-        <input type="submit" value="search"></input>
+        <input class="button" type="submit" value="search"></input>
       </form>
-      <p> ------------------------
+
     <div id="puns_section">
       {%for post in posts%}
         <div class="puns_container">
