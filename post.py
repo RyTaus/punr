@@ -4,4 +4,4 @@ class Post(ndb.Model):
     poster_name = ndb.StringProperty()
     content = ndb.StringProperty()
     words_punned = ndb.StringProperty(repeated=True)
-    time = ndb.FloatProperty()
+    time = ndb.DateTimeProperty()
