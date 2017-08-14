@@ -26,3 +26,35 @@ body {
     background-color: #4CAF50;
     color: white;
 }
+
+#puns_section {
+  background-color: silver;
+  border: 10px solid black;
+  margin-top: 20px;
+}
+
+div.puns_container {
+  background-color: grey;
+  border-radius: 30px;
+  margin: 5px;
+  padding: 0px 0px 0px 5px;
+}
+h3.pun {
+  display: inline-block;
+}
+.pun {
+  font-style: normal;
+  font-family: sans-serif;
+  color: white;
+  background-color: black;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px 0px 10px 0px;
+  word-wrap: break-word;
+}
+
+span.post_time {
+  font-style: normal;
+  font-family: sans-serif;
+  color: white;
+}

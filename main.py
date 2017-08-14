@@ -27,7 +27,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logout_url = users.create_logout_url('/')
-        login_url = users.create_login_url('/')
+        login_url = users.create_login_url('/home')
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                 (user.nickname(), login_url))

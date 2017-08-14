@@ -14,11 +14,11 @@
       <a href="#about">About</a>
     </div>
 
-    <div>
+    <div id="puns_section">
       {%for post in posts%}
-        <div>
-          <p> {{ post.content }}
-          <p> @ {{ post.time }}
+        <div class="puns_container">
+          <h3 class="pun">UserName </h3> <span class="post_time">@ {{ post.time }} </span>
+          <p class="pun"> {{ post.content }} </p>
         </div>
       {% endfor %}
     </div>
