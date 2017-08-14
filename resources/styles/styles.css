@@ -1,7 +1,7 @@
 body {
   background-image: url("/resources/images/background.jpg");
   font-style: normal;
-  font-family: sans-serif;
+  font-family: "Comic Sans MS";
 }
 
 .topnav {
@@ -9,7 +9,7 @@ body {
     overflow: hidden;
     border-radius: 30px;
     font-style: normal;
-    font-family: sans-serif;
+    font-family: "Comic Sans MS";
 }
 
 .topnav a {
@@ -45,6 +45,7 @@ div.puns_container {
   margin: 5px;
   padding: 0px 0px 30px 5px;
   border: 5px none black;
+  font-family: "Comic Sans MS";
 }
 
 h3.pun {
@@ -53,7 +54,7 @@ h3.pun {
 
 .pun {
   font-style: normal;
-  font-family: sans-serif;
+  font-family: "Comic Sans MS";
   color: white;
   background-color: black;
   border-radius: 20px;
@@ -64,18 +65,18 @@ h3.pun {
 
 span.post_time {
   font-style: normal;
-  font-family: sans-serif;
+  font-family: "Comic Sans MS";
   color: white;
 }
 
 .prompt_text {
   font-style: normal;
-  font-family: sans-serif;
+  font-family: "Comic Sans MS";
 }
 
 h1.prompt_text {
   font-style: normal;
-  font-family: fantasy;
+  font-family: "Comic Sans MS";
   font-size: 200%;
   margin: 20px;
   display: inline-block;
@@ -83,7 +84,7 @@ h1.prompt_text {
 
 p.prompt_text {
   font-style: normal;
-  font-family: fantasy;
+  font-family: "Comic Sans MS";
   font-size: 200%;
   padding-left: 10px;
   margin: 20px;
@@ -124,7 +125,7 @@ h2.prompt_text {
 
 #likes {
   font-style: normal;
-  font-family: fantasy;
+  font-family: "Comic Sans MS";
   padding-left: 10px;
   display: inline-block;
 }
@@ -174,11 +175,13 @@ h1.about{
 
 #homephoto{
   display: block;
-    margin: auto;
+  margin: auto;
+  box-shadow: 5px 5px 5px #333;
+  border: 5px solid black;
 }
 
 .titles {
   font-style: normal;
-  font-family: fantasy;
+  font-family: "Comic Sans MS";
   background-color:
 }
