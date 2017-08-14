@@ -1,5 +1,5 @@
 body {
-  background-color: LightSteelBlue;
+  background-image: url("/resources/images/background.jpg");
   font-style: normal;
   font-family: sans-serif;
 }
@@ -93,13 +93,15 @@ span.post_time {
   height: 400px;
   width: 95%;
   margin: 0 auto 0 auto;
+  border-radius: 30px;
+  border: 10px solid #333;
 }
 
 div.blurb{
   background-color: white;
-  border: 10px solid black;
+  border: 10px solid #333;
   border-radius: 30px;
-  margin: 20px 50px 0px 20px;
+  margin: 20px 50px 30px 20px;
   display: block;
   width: 600px
 }
@@ -109,10 +111,10 @@ p.blurbtext{
   text-align: center;
 }
 
-#about{
-  margin-right: 50px;
+#aboutimg{
+  margin: 30px 60px 0px 20px;
   float: right;
-  border: 10px solid black;
+  border: 10px solid #333;
   border-radius: 30px;
 }
 
@@ -121,6 +123,16 @@ span.name{
   font-weight: bold;
 }
 
-h1,h2{
+h1.about{
   text-align: center;
+}
+
+#homeblurb{
+  text-align: center;
+  margin-top: 50px;
+}
+
+#homephoto{
+  display: block;
+    margin: auto;
 }
