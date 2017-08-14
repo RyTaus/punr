@@ -21,6 +21,19 @@ class MainHandler(webapp2.RequestHandler):
         else:
             greeting = ('<a href="%s">Sign in or register</a>.' % login_url)
 
+        if users.get_current_user():
+            us = users.get_current_user().email()
+            us = User.query(User.email == us).fetch()
+
+            if us:
+                pass
+            else:
+                us = User(
+                    email= users.get_current_user().email(),
+                    posts=[]
+                )
+                us.put()
+
         # create user Model
 
         vars = {
@@ -30,24 +43,25 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(template.render(vars))
 
     def post(self):
-        u = users.get_current_user().email()
-        u = User.query(User.email == u).fetch()
-        if u:
+        us = users.get_current_user().email()
+        us = User.query(User.email == u).fetch()
+
+        if us:
             pass
         else:
-            u = User(
+            us = User(
                 email= users.get_current_user().email(),
                 posts=[]
             )
-            u.put()
-        self.redirect('/get')
+            us.put()
+        self.response.write(us)
+        # self.redirect('/')
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
         template = env.get_template('profile.html')
 
         u = users.get_current_user().email()
-        print(u)
         u = User.query(User.email == u).fetch()
         posts = [p.get() for p in u[0].posts]
 
