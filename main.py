@@ -81,8 +81,7 @@ class BrowseHandler(webapp2.RequestHandler):
             result.insert(0, additional)
 
         template_data = {
-            'posts': result,
-            'user': users.get_current_user()
+            'posts': result
         }
         self.response.write(template.render(template_data))
 
