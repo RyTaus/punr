@@ -5,6 +5,9 @@ body {
 .topnav {
     background-color: #333;
     overflow: hidden;
+    border-radius: 30px;
+    font-style: normal;
+    font-family: sans-serif;
 }
 
 .topnav a {
@@ -31,6 +34,7 @@ body {
   background-color: silver;
   border: 10px solid black;
   margin-top: 20px;
+  border-radius: 30px;
 }
 
 div.puns_container {

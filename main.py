@@ -86,11 +86,15 @@ class BrowseHandler(webapp2.RequestHandler):
 
         self.display_page(post)
 
-
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+        template = env.get_template('about.html')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/home', HomeHandler),
     ('/post', PostHandler),
     ('/browse', BrowseHandler),
+    ('/about', AboutHandler)
 ], debug=True)
