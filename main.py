@@ -18,7 +18,7 @@ class MainHandler(webapp2.RequestHandler):
                 (user.nickname(), login_url))
             # create user Model
             u = users.get_current_user().nickname()
-            u = User.query(User.name == u).get()
+            u = User.query(User.name == users.get_current_user().nickname()).get()
             if u:
                 pass
             else:
@@ -67,7 +67,8 @@ class BrowseHandler(webapp2.RequestHandler):
             result.insert(0, additional)
 
         template_data = {
-            'posts': result
+            'posts': result,
+            'user': users.get_current_user()
         }
         self.response.write(template.render(template_data))
 
@@ -83,8 +84,12 @@ class BrowseHandler(webapp2.RequestHandler):
         )
         if post.content != '':
             post.put()
+        
+        users.get_current_user().nickname()
+        user = User.query(User.name == user).get()
 
         self.display_page(post)
+        self.response.write(user)
 
 
 
