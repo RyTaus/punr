@@ -14,11 +14,20 @@
       <a href="/about">About</a>
     </div>
 
+    <div>
+      <form action="/browse" method="post">
+        <input type="hidden" name="kind" value="search"></input>
+        search for puns: <input type="text" name="q" value=""></input>
+        <br>
+        <input type="submit" value="search"></input>
+      </form>
+      <p> ------------------------
     <div id="puns_section">
       {%for post in posts%}
         <div class="puns_container">
           <h3 class="pun">{{ post.poster_name }} </h3> <span class="post_time">@ {{ post.time }} </span>
           <form action="/browse" method="post">
+            <input type="hidden" name="kind" value="upvote"></input>
             <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
             <input type="submit" value="like"></input>
           </form>

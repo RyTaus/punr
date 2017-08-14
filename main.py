@@ -58,7 +58,8 @@ class ProfileHandler(webapp2.RequestHandler):
         posts = [p.get() for p in u[0].posts]
 
         vars = {
-            'posts': posts
+            'posts': posts,
+            'score': sum([p.score for p in posts])
         }
         self.response.write(template.render(vars))
 
@@ -72,7 +73,7 @@ class PostHandler(webapp2.RequestHandler):
         post = Post(
             content=self.request.get('content'),
             time= datetime.now(),
-            words_punned= self.request.get('keywords').split(','),
+            words_punned= [kw.strip().lower() for kw in self.request.get('keywords').split(',')],
             poster_name= users.get_current_user().nickname(),
             score= 0
         )
@@ -87,15 +88,13 @@ class PostHandler(webapp2.RequestHandler):
         self.redirect('/browse')
 
 class BrowseHandler(webapp2.RequestHandler):
-    def display_page(self, additional=None):
+    def display_page(self, query):
         template = env.get_template('browse.html')
-        query = Post.query()
-        query = query.order(-Post.time)
 
         result = query.fetch(limit = 10);
 
-        if additional: # check if already contains
-            result.insert(0, additional)
+        # if additional: # check if already contains
+        #     result.insert(0, additional)
 
         template_data = {
             'posts': result
@@ -103,22 +102,32 @@ class BrowseHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_data))
 
     def get(self):
-        self.display_page()
+        query = Post.query()
+        query = query.order(-Post.time)
+        self.display_page(query)
 
     def post(self):
-        post_id = int(self.request.get('post_id'))
+        query = Post.query()
 
-        user = users.get_current_user().nickname()
-        user = User.query(User.email == user).get()
-        post = Post.get_by_id(post_id)
+        if (self.request.get('kind') == 'upvote'):
+            post_id = int(self.request.get('post_id'))
 
-        if post.key not in user.posts_liked:
-            post.score += 1
-            key = post.put()
-            user.posts_liked.insert(0, key)
-            user.put()
+            user = users.get_current_user().nickname()
+            user = User.query(User.email == user).get()
+            post = Post.get_by_id(post_id)
 
-        self.display_page()
+            if post.key not in user.posts_liked:
+                post.score += 1
+                key = post.put()
+                user.posts_liked.insert(0, key)
+                user.put()
+
+        elif (self.request.get('kind') == 'search'):
+            query = Post.query(Post.words_punned == str(self.request.get('q')).strip().lower())
+
+        query = query.order(-Post.time)
+
+        self.display_page(query)
 
 class AboutHandler(webapp2.RequestHandler):
     def get(self):
