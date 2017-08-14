@@ -69,6 +69,24 @@ class PostHandler(webapp2.RequestHandler):
         template = env.get_template('post.html')
         self.response.write(template.render())
 
+    def post(self):
+        post = Post(
+            content=self.request.get('content'),
+            time= datetime.now(),
+            words_punned= self.request.get('keywords').split(','),
+            poster_name= users.get_current_user().nickname(),
+            score= 0
+        )
+
+        key = post.put()
+
+        user = users.get_current_user().nickname()
+        user = User.query(User.email == user).get()
+
+        user.posts.insert(0, key)
+        user.put()
+        self.redirect('/browse')
+
 class BrowseHandler(webapp2.RequestHandler):
     def display_page(self, additional=None):
         template = env.get_template('browse.html')
@@ -77,7 +95,7 @@ class BrowseHandler(webapp2.RequestHandler):
 
         result = query.fetch(limit = 10);
 
-        if additional:
+        if additional: # check if already contains
             result.insert(0, additional)
 
         template_data = {
@@ -89,23 +107,15 @@ class BrowseHandler(webapp2.RequestHandler):
         self.display_page()
 
     def post(self):
-        post = Post(
-            content=self.request.get('content'),
-            time= datetime.now(),
-            words_punned= self.request.get('keywords').split(','),
-            poster_name= users.get_current_user().nickname()
-        )
+        post_id = self.request.get('post_id')
+        post = Post.get_by_id(int(post_id))
 
-        key = post.put()
+        post.score += 1
 
-        user = users.get_current_user().nickname()
-        user = User.query(User.email == user).get()
-
-        user.posts.insert(0, key)
-        user.put()
-
-
-        self.display_page(post)
+        post.put()
+        self.display_page()
+        print('-------', post)
+        self.response.write(post)
 
 class AboutHandler(webapp2.RequestHandler):
     def get(self):

@@ -5,3 +5,4 @@ class Post(ndb.Model):
     content = ndb.StringProperty()
     words_punned = ndb.StringProperty(repeated=True)
     time = ndb.DateTimeProperty()
+    score = ndb.IntegerProperty()
