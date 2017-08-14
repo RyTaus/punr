@@ -17,11 +17,19 @@ class MainHandler(webapp2.RequestHandler):
         login_url = users.create_login_url('/')
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                (user.email(), login_url))
+                (user.email(), logout_url))
         else:
             greeting = ('<a href="%s">Sign in or register</a>.' % login_url)
 
         # create user Model
+
+        vars = {
+            'data': user,
+            'greeting': greeting
+        }
+        self.response.write(template.render(vars))
+
+    def post(self):
         u = users.get_current_user().email()
         u = User.query(User.email == u).fetch()
         if u:
@@ -32,12 +40,7 @@ class MainHandler(webapp2.RequestHandler):
                 posts=[]
             )
             u.put()
-
-        vars = {
-            'data': u,
-            'greeting': greeting
-        }
-        self.response.write(template.render(vars))
+        self.redirect('/get')
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
