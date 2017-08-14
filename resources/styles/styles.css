@@ -1,5 +1,5 @@
 body {
-  background-color: LightSteelBlue;
+  background-image: url("/resources/images/background.jpg");
   font-style: normal;
   font-family: sans-serif;
 }
@@ -50,6 +50,7 @@ div.puns_container {
 h3.pun {
   display: inline-block;
 }
+
 .pun {
   font-style: normal;
   font-family: sans-serif;
@@ -72,34 +73,75 @@ span.post_time {
   font-family: sans-serif;
 }
 
-.button {
-  margin-top: 10px;
+h1.prompt_text {
+  font-style: normal;
+  font-family: fantasy;
+  font-size: 200%;
+  margin: 20px;
+  display: inline-block;
+}
+
+p.prompt_text {
+  font-style: normal;
+  font-family: fantasy;
+  font-size: 200%;
+  padding-left: 10px;
+  margin: 20px;
+  display: inline-block;
+}
+
+h2.prompt_text {
+  margin-bottom: 10px
+}
+
+#search {
+  margin-bottom: 10px
+}
+#button {
+  margin: 10px;
+  margin-top: 0px;
   padding: 5px 15px;
   background: silver;
   border: 1px solid black;
   cursor: pointer;
   border-radius: 30px;
+  display: inline-block;}
 
+.button {
+  margin: 10px;
+  margin-top: 0px;
+  padding: 5px 15px;
+  background: silver;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 30px;
+  display: inline-block;
 }
 
+.like_container {
+  display: inline-block;
+}
 
 #likes {
   font-style: normal;
-  font-family: sans-serif;
+  font-family: fantasy;
   padding-left: 10px;
+  display: inline-block;
 }
 
 #map {
   height: 400px;
   width: 95%;
   margin: 0 auto 0 auto;
+  border-radius: 30px;
+  border: 10px solid #333;
 }
 
 div.blurb{
   background-color: white;
-  border: 10px solid black;
+  border: 10px solid #333;
   border-radius: 30px;
-  margin: 20px 50px 0px 20px;
+  margin: 20px 50px 30px 20px;
   display: block;
   width: 600px
 }
@@ -109,10 +151,10 @@ p.blurbtext{
   text-align: center;
 }
 
-#about{
-  margin-right: 50px;
+#aboutimg{
+  margin: 30px 60px 0px 20px;
   float: right;
-  border: 10px solid black;
+  border: 10px solid #333;
   border-radius: 30px;
 }
 
@@ -121,6 +163,16 @@ span.name{
   font-weight: bold;
 }
 
-h1,h2{
+h1.about{
   text-align: center;
+}
+
+#homeblurb{
+  text-align: center;
+  margin-top: 50px;
+}
+
+#homephoto{
+  display: block;
+    margin: auto;
 }

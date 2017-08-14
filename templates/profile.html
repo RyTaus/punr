@@ -14,24 +14,19 @@
       <a href="/about">About</a>
     </div>
 
-    <p> PROFILE
+    <h1 class="prompt_text"> PROFILE </h1>
 
     <form action="/profile" method="post">
       <input type="hidden" name="target" value="view posts"></input>
-      <input type="submit"value="view your posts"></input>
+      <input class="button" type="submit"value="view your posts"></input>
     </form>
 
     <form action="/profile" method="post">
       <input type="hidden" name="target" value="view liked posts"></input>
-      <input type="submit"value="view liked posts"></input>
+      <input class="button" type="submit"value="view liked posts"></input>
     </form>
+    <p class="prompt_text">Score: {{score}} </p>
 
-
-
-    <br>
-    {{score}}
-    <br>
-    <br>
 
     {%for post in posts%}
       <div class="puns_container">

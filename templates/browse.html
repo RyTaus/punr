@@ -18,24 +18,24 @@
       <form action="/browse" method="post">
         <input type="hidden" name="kind" value="search"></input>
         <h2 class="prompt_text">search for puns: </h2>
-        <input type="text" name="q" value=""></input>
+        <input id="search" type="text" name="q" value=""></input>
         <br>
-        <input class="button" type="submit" value="search"></input>
+        <input id="button" type="submit" value="search"></input>
       </form>
 
-    <div id="puns_section">
+    <!-- <div id="puns_section"> -->
       {%for post in posts%}
         <div class="puns_container">
           <h3 class="pun">{{ post.poster_name }} </h3> <span class="post_time">@ {{ post.time }} </span>
-          <form action="/browse" method="post">
+          <p class="pun"> {{ post.content }} </p>
+          <h3 id="likes"> {{post.score}}</h3>
+          <form class="like_container" action="/browse" method="post">
             <input type="hidden" name="kind" value="upvote"></input>
             <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
             <input class="button" type="submit" value="like"></input>
           </form>
-          <h3 id="likes"> {{post.score}}</h3>
-          <p class="pun"> {{ post.content }} </p>
         </div>
       {% endfor %}
-    </div>
+    <!-- </div> -->
   </body>
 </html>
