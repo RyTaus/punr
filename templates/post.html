@@ -2,14 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
+  <link rel="stylesheet" href="/resources/styles/styles.css">
     <title>Make A Post</title>
   </head>
   <body>
     <!-- Maybe go to own page then redirect idk -->
+    <div class="topnav" id="myTopnav">
+      <a href="/home">Home</a>
+      <a href="/browse">Browse</a>
+      <a href="/post">Post</a>
+      <a href="#profile">Profile</a>
+      <a href="#about">About</a>
+    </div>
+
     <form action="/browse" method="post">
       <input type="text" name="content" placeholder="Comment..."></input>
       <input type="button" type="submit" value="Submit"></input>
-
     </form>
   </body>
 </html>
