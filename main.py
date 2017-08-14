@@ -33,7 +33,6 @@ class HomeHandler(webapp2.RequestHandler):
 
         # create user Model
         u = users.get_current_user().nickname()
-        print(u)
         u = User.query(User.email == u).fetch()
         if u:
             pass
@@ -107,15 +106,19 @@ class BrowseHandler(webapp2.RequestHandler):
         self.display_page()
 
     def post(self):
-        post_id = self.request.get('post_id')
-        post = Post.get_by_id(int(post_id))
+        post_id = int(self.request.get('post_id'))
 
-        post.score += 1
+        user = users.get_current_user().nickname()
+        user = User.query(User.email == user).get()
+        post = Post.get_by_id(post_id)
 
-        post.put()
+        if post.key not in user.posts_liked:
+            post.score += 1
+            key = post.put()
+            user.posts_liked.insert(0, key)
+            user.put()
+
         self.display_page()
-        print('-------', post)
-        self.response.write(post)
 
 class AboutHandler(webapp2.RequestHandler):
     def get(self):

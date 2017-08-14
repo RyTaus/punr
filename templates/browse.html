@@ -14,16 +14,13 @@
       <a href="/about">About</a>
     </div>
 
-    <div>
-      <p> {{ user }}
-      <p> ------------------------
     <div id="puns_section">
       {%for post in posts%}
         <div class="puns_container">
           <h3 class="pun">{{ post.poster_name }} </h3> <span class="post_time">@ {{ post.time }} </span>
           <form action="/browse" method="post">
             <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
-            <input type="submit" value="Up"></input>
+            <input type="submit" value="like"></input>
           </form>
           <p> {{post.score}}
           <p class="pun"> {{ post.content }} </p>

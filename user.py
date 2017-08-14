@@ -7,3 +7,4 @@ class User(ndb.Model):
     email = ndb.StringProperty()
     city = ndb.StringProperty()
     posts = ndb.KeyProperty( post.Post, repeated=True )
+    posts_liked = ndb.KeyProperty( post.Post, repeated=True)
