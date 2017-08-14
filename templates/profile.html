@@ -16,6 +16,18 @@
 
     <p> PROFILE
 
+    <form action="/profile" method="post">
+      <input type="hidden" name="target" value="view posts"></input>
+      <input type="submit"value="view your posts"></input>
+    </form>
+
+    <form action="/profile" method="post">
+      <input type="hidden" name="target" value="view liked posts"></input>
+      <input type="submit"value="view liked posts"></input>
+    </form>
+
+
+
     <br>
     {{score}}
     <br>

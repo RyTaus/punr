@@ -33,6 +33,7 @@ class HomeHandler(webapp2.RequestHandler):
 
         # create user Model
         u = users.get_current_user().nickname()
+        print(u)
         u = User.query(User.email == u).fetch()
         if u:
             pass
@@ -59,9 +60,27 @@ class ProfileHandler(webapp2.RequestHandler):
 
         vars = {
             'posts': posts,
-            'score': sum([p.score for p in posts])
+            'score': sum( [p.score for p in posts] )
         }
         self.response.write(template.render(vars))
+
+    def post(self):
+        template = env.get_template('profile.html')
+        u = users.get_current_user().nickname()
+        u = User.query(User.email == u).fetch()
+        posts = None
+        if (self.request.get('target') == 'view liked posts'):
+            posts = [p.get() for p in u[0].posts_liked]
+        else:
+            posts = [p.get() for p in u[0].posts]
+
+        vars = {
+            'posts': posts,
+            'score': sum( [p.score for p in [p.get() for p in u[0].posts]] )
+        }
+        self.response.write(template.render(vars))
+
+
 
 
 class PostHandler(webapp2.RequestHandler):
