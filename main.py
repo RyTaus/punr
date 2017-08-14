@@ -16,12 +16,13 @@
 #
 import webapp2
 import jinja2
-from google.appengine.api import users
 from post import Post
 from user import User
+from google.appengine.api import users
 import time
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -36,6 +37,7 @@ class MainHandler(webapp2.RequestHandler):
         vars = {
             'greeting': greeting
         }
+        # check if its in there, if not make new.  Else just grab
 
         template = env.get_template('index.html')
         self.response.write(template.render(vars))
@@ -44,6 +46,7 @@ class HomeHandler(webapp2.RequestHandler):
     def get(self):
         template = env.get_template('home.html')
         self.response.write(template.render())
+
 
 class PostHandler(webapp2.RequestHandler):
     def get(self):
@@ -79,6 +82,8 @@ class BrowseHandler(webapp2.RequestHandler):
             post.put()
 
         self.display_page(post)
+
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
