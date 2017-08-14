@@ -16,43 +16,59 @@
 #
 import webapp2
 import jinja2
-from posts import Post
-from datetime import datetime
+from post import Post
+import time
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template = env.get_template('index.html')
+        template = env.get_template('home.html')
+        self.response.write(template.render())
+
+
+class PostHandler(webapp2.RequestHandler):
+    def get(self):
+        template = env.get_template('post.html')
         self.response.write(template.render())
 
 class BrowseHandler(webapp2.RequestHandler):
-    def get(self):
-        posts_query = Post.query()
-        posts_result = posts_query.fetch(limit=10)
-        vars = {
-            'post_list': posts_result
-        }
+    def display_page(self, additional=None):
         template = env.get_template('browse.html')
-        self.response.write(template.render(vars))
+        query = Post.query()
+        query = query.order(-Post.time)
+
+        result = query.fetch(limit = 10);
+
+        if additional:
+            result.insert(0, additional)
+
+        template_data = {
+            'posts': result
+        }
+        self.response.write(template.render(template_data))
+
+    def get(self):
+        self.display_page()
 
     def post(self):
-        op = Post(
-            op_name=self.request.get('op_name'),
-            post_text=self.request.get('post_text'),
-            post_date=datetime.now())
+        # time = (str(datetime.now())
+        #     .replace(':', '')
+        #     .replace('-', '')
+        #     .replace(' ', '')
+        # )
+        post = Post(
+            content=self.request.get('content'),
+            time= time.time()
+        )
+        if post.content != '':
+            post.put()
 
-        if op.op_name != "" and op.post_text != "":
-            key = op.put()
+        self.display_page(post)
 
-        posts_query = Post.query()
-        posts_result = posts_query.fetch(limit=10)
-        vars = {
-            'post_list': posts_result
-        }
-        template = env.get_template('browse.html')
-        self.response.write(template.render(vars))
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/browse', BrowseHandler)
+    ('/post', PostHandler),
+    ('/browse', BrowseHandler),
 ], debug=True)
