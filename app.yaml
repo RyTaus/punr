@@ -10,8 +10,11 @@ handlers:
   upload: favicon\.ico
 - url: /resources
   static_dir: resources
+- url: /
+  script: main.app
 - url: .*
   script: main.app
+  login: required
 
 libraries:
 - name: jinja2

@@ -6,6 +6,8 @@ body {
 
 .topnav {
     background-color: #333;
+    background-size: 100%;
+    background-repeat: no-repeat;
     overflow: hidden;
     border-radius: 30px;
     font-style: normal;

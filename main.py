@@ -15,7 +15,7 @@ class MainHandler(webapp2.RequestHandler):
         login_url = users.create_login_url('/home')
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                (user.nickname(), login_url))
+                (user.email(), login_url))
         else:
             greeting = ('<a href="%s">Sign in or register</a>.' % login_url)
 
@@ -32,7 +32,7 @@ class HomeHandler(webapp2.RequestHandler):
         template = env.get_template('home.html')
 
         # create user Model
-        u = users.get_current_user().nickname()
+        u = users.get_current_user().email()
         print(u)
         u = User.query(User.email == u).fetch()
         if u:
@@ -53,7 +53,7 @@ class ProfileHandler(webapp2.RequestHandler):
     def get(self):
         template = env.get_template('profile.html')
 
-        u = users.get_current_user().nickname()
+        u = users.get_current_user().email()
         print(u)
         u = User.query(User.email == u).fetch()
         posts = [p.get() for p in u[0].posts]
@@ -66,7 +66,7 @@ class ProfileHandler(webapp2.RequestHandler):
 
     def post(self):
         template = env.get_template('profile.html')
-        u = users.get_current_user().nickname()
+        u = users.get_current_user().email()
         u = User.query(User.email == u).fetch()
         posts = None
         if (self.request.get('target') == 'view liked posts'):
@@ -92,13 +92,13 @@ class PostHandler(webapp2.RequestHandler):
         post = Post(
             content=self.request.get('content'),
             words_punned= [kw.strip().lower() for kw in self.request.get('keywords').split(',')],
-            poster_name= users.get_current_user().nickname(),
+            poster_name= users.get_current_user().email(),
             score= 0
         )
 
         key = post.put()
 
-        user = users.get_current_user().nickname()
+        user = users.get_current_user().email()
         user = User.query(User.email == user).get()
 
         user.posts.insert(0, key)
@@ -136,7 +136,7 @@ class BrowseHandler(webapp2.RequestHandler):
         if (self.request.get('kind') == 'upvote'):
             post_id = int(self.request.get('post_id'))
 
-            user = users.get_current_user().nickname()
+            user = users.get_current_user().email()
             user = User.query(User.email == user).get()
             post = Post.get_by_id(post_id)
 
