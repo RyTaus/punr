@@ -23,7 +23,7 @@
         <input id="button" type="submit" value="search"></input>
       </form>
 
-    <div id="puns_section">
+    <!-- <div id="puns_section"> -->
       {%for post in posts%}
         <div class="puns_container">
           <h3 class="pun">{{ post.poster_name }} </h3> <span class="post_time">@ {{ post.time }} </span>
@@ -36,6 +36,6 @@
           </form>
         </div>
       {% endfor %}
-    </div>
+    <!-- </div> -->
   </body>
 </html>

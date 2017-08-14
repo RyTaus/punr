@@ -73,6 +73,23 @@ span.post_time {
   font-family: sans-serif;
 }
 
+h1.prompt_text {
+  font-style: normal;
+  font-family: fantasy;
+  font-size: 200%;
+  margin: 20px;
+  display: inline-block;
+}
+
+p.prompt_text {
+  font-style: normal;
+  font-family: fantasy;
+  font-size: 200%;
+  padding-left: 10px;
+  margin: 20px;
+  display: inline-block;
+}
+
 h2.prompt_text {
   margin-bottom: 10px
 }
