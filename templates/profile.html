@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <p> PROFILE
+    {%for post in posts%}
+      <div class="puns_container">
+        <h3 class="pun">{{ user }} </h3> <span class="post_time">@ {{ post.time }} </span>
+        <p class="pun"> {{ post.content }} </p>
+      </div>
+    {% endfor %}
+  </head>
+  <body>
+
+  </body>
+</html>

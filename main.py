@@ -12,21 +12,10 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         logout_url = users.create_logout_url('/')
-        login_url = users.create_login_url('/')
+        login_url = users.create_login_url('/home')
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                 (user.nickname(), login_url))
-            # create user Model
-            u = users.get_current_user().nickname()
-            u = User.query(User.name == users.get_current_user().nickname()).get()
-            if u:
-                pass
-            else:
-
-                u = User(
-                    email= users.get_current_user().email()
-                )
-                u.put()
         else:
             greeting = ('<a href="%s">Sign in or register</a>.' % login_url)
 
@@ -42,10 +31,35 @@ class HomeHandler(webapp2.RequestHandler):
     def get(self):
         template = env.get_template('home.html')
 
-        user = users.get_current_user().nickname()
-        user = User.query(User.name == user).get()
+        # create user Model
+        u = users.get_current_user().nickname()
+        print(u)
+        u = User.query(User.email == u).fetch()
+        if u:
+            pass
+        else:
+            u = User(
+                email= users.get_current_user().email(),
+                posts=[]
+            )
+            u.put()
+
         vars = {
-            'data': user
+            'data': u
+        }
+        self.response.write(template.render(vars))
+
+class ProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        template = env.get_template('profile.html')
+
+        u = users.get_current_user().nickname()
+        print(u)
+        u = User.query(User.email == u).fetch()
+        posts = [p.get() for p in u[0].posts]
+
+        vars = {
+            'posts': posts
         }
         self.response.write(template.render(vars))
 
@@ -82,13 +96,18 @@ class BrowseHandler(webapp2.RequestHandler):
             words_punned= self.request.get('keywords').split(','),
             poster_name= users.get_current_user().nickname()
         )
-        if post.content != '':
-            post.put()
-        
-        users.get_current_user().nickname()
-        user = User.query(User.name == user).get()
+
+        key = post.put()
+
+        user = users.get_current_user().nickname()
+        user = User.query(User.email == user).get()
+
+        user.posts.insert(0, key)
+        user.put()
+
 
         self.display_page(post)
+
         self.response.write(user)
 
 
@@ -98,4 +117,6 @@ app = webapp2.WSGIApplication([
     ('/home', HomeHandler),
     ('/post', PostHandler),
     ('/browse', BrowseHandler),
+    ('/profile', ProfileHandler),
+
 ], debug=True)
