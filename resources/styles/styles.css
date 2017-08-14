@@ -42,7 +42,7 @@ body {
 div.puns_container {
   background-color: grey;
   border-radius: 30px;
-  margin: 5px;
+  margin: 5px 5px 30px 5px;
   padding: 0px 0px 0px 5px;
 }
 h3.pun {
@@ -79,6 +79,14 @@ span.post_time {
   border-radius: 30px;
 
 }
+
+
+#likes {
+  font-style: normal;
+  font-family: sans-serif;
+  padding-left: 10px;
+}
+
 #map {
   height: 400px;
   width: 100%;

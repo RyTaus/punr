@@ -30,9 +30,9 @@
           <form action="/browse" method="post">
             <input type="hidden" name="kind" value="upvote"></input>
             <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
-            <input type="submit" value="like"></input>
+            <input class="button" type="submit" value="like"></input>
           </form>
-          <p> {{post.score}}
+          <h3 id="likes"> {{post.score}}</h3>
           <p class="pun"> {{ post.content }} </p>
         </div>
       {% endfor %}
