@@ -17,6 +17,7 @@
 import webapp2
 import jinja2
 from post import Post
+from user import User
 import time
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
@@ -51,14 +52,10 @@ class BrowseHandler(webapp2.RequestHandler):
         self.display_page()
 
     def post(self):
-        # time = (str(datetime.now())
-        #     .replace(':', '')
-        #     .replace('-', '')
-        #     .replace(' ', '')
-        # )
         post = Post(
             content=self.request.get('content'),
-            time= time.time()
+            time= time.time(),
+            words_punned= self.request.get('keywords').split(',')
         )
         if post.content != '':
             post.put()
