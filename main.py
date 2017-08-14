@@ -10,30 +10,19 @@ env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        template = env.get_template('home.html')
+
         user = users.get_current_user()
         logout_url = users.create_logout_url('/')
-        login_url = users.create_login_url('/home')
+        login_url = users.create_login_url('/')
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                 (user.email(), login_url))
         else:
             greeting = ('<a href="%s">Sign in or register</a>.' % login_url)
 
-        vars = {
-            'greeting': greeting
-        }
-        # check if its in there, if not make new.  Else just grab
-
-        template = env.get_template('index.html')
-        self.response.write(template.render(vars))
-
-class HomeHandler(webapp2.RequestHandler):
-    def get(self):
-        template = env.get_template('home.html')
-
         # create user Model
         u = users.get_current_user().email()
-        print(u)
         u = User.query(User.email == u).fetch()
         if u:
             pass
@@ -45,7 +34,8 @@ class HomeHandler(webapp2.RequestHandler):
             u.put()
 
         vars = {
-            'data': u
+            'data': u,
+            'greeting': greeting
         }
         self.response.write(template.render(vars))
 
@@ -160,7 +150,6 @@ class AboutHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/home', HomeHandler),
     ('/post', PostHandler),
     ('/browse', BrowseHandler),
     ('/profile', ProfileHandler),

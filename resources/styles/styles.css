@@ -6,8 +6,6 @@ body {
 
 .topnav {
     background-color: #333;
-    background-size: 100%;
-    background-repeat: no-repeat;
     overflow: hidden;
     border-radius: 30px;
     font-style: normal;
@@ -42,11 +40,11 @@ body {
 }
 
 div.puns_container {
-  background-color: #b3b3b3;
+  background-color: transparent;
   border-radius: 30px;
   margin: 5px;
-  padding: 0px 0px 0px 5px;
-  border: 5px solid black;
+  padding: 0px 0px 30px 5px;
+  border: 5px none black;
 }
 
 h3.pun {
@@ -60,7 +58,7 @@ h3.pun {
   background-color: black;
   border-radius: 20px;
   padding: 15px;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 10px 0px 0px;
   word-wrap: break-word;
 }
 
@@ -177,4 +175,10 @@ h1.about{
 #homephoto{
   display: block;
     margin: auto;
+}
+
+.titles {
+  font-style: normal;
+  font-family: fantasy;
+  background-color:
 }
