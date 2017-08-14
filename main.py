@@ -108,15 +108,26 @@ class BrowseHandler(webapp2.RequestHandler):
 
         self.display_page(post)
 
+<<<<<<< HEAD
         self.response.write(user)
 
 
+=======
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+        template = env.get_template('about.html')
+        self.response.write(template.render())
+>>>>>>> c949d1dae3ae38bd0e430f6214deae59321303c7
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/home', HomeHandler),
     ('/post', PostHandler),
     ('/browse', BrowseHandler),
+<<<<<<< HEAD
     ('/profile', ProfileHandler),
 
+=======
+    ('/about', AboutHandler)
+>>>>>>> c949d1dae3ae38bd0e430f6214deae59321303c7
 ], debug=True)
