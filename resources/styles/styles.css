@@ -1,3 +1,15 @@
+#homeblurb {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#homephoto {
+  display: block;
+  margin: auto;
+  box-shadow: 5px 5px 5px #333;
+  border: 5px solid black;
+}
+
 body {
   background-image: url("/resources/images/background.jpg");
   font-style: normal;
@@ -138,46 +150,35 @@ h2.prompt_text {
   border: 10px solid #333;
 }
 
-div.blurb{
+div.blurb {
   background-color: white;
   border: 10px solid #333;
   border-radius: 30px;
   margin: 20px 50px 30px 20px;
-  display: block;
+  display: inline-block;
   width: 600px
 }
 
-p.blurbtext{
+p.blurbtext {
   font-size: 30px;
   text-align: center;
 }
 
-#aboutimg{
+#aboutimg {
   margin: 30px 60px 0px 20px;
   float: right;
   border: 10px solid #333;
   border-radius: 30px;
 }
 
-span.name{
+span.name {
   font-size: 40px;
   font-weight: bold;
+  color: navy;
 }
 
-h1.about{
+h1.about {
   text-align: center;
-}
-
-#homeblurb{
-  text-align: center;
-  margin-top: 50px;
-}
-
-#homephoto{
-  display: block;
-  margin: auto;
-  box-shadow: 5px 5px 5px #333;
-  border: 5px solid black;
 }
 
 .titles {
