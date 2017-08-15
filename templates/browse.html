@@ -10,10 +10,20 @@
   <body>
     {% include "navbar.html" %}
 
+    <span>
+      <form action="/browse" method="post">
+        <input type="hidden" name="kind" value="search"></input>
+        <!-- <h2 class="titles">search for puns: </h2> -->
+        <input id="search" type="text" name="q" placeholder='Search...' value=""></input>
+        <!-- <br> -->
+        <input id="button" type="submit" value="Search"></input>
+      </form>
+    </span>
+    <br>
 
     <!-- <div id="puns_section"> -->
       {%for post in posts%}
-        <div class="post container">
+        <div class="pun container">
           <span class="col-xs-1 score">
             <span id="likes"> <strong>{{post.score}}</strong></span>
             <form class="like_container" action="/browse" method="post">
