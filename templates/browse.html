@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="/resources/styles/styles.css">
 
     <title>Browse Posts</title>
@@ -10,7 +10,7 @@
   <body>
     {% include "navbar.html" %}
 
-    <span>
+    <span class="container">
       <form action="/browse" method="post">
         <input type="hidden" name="kind" value="search"></input>
         <!-- <h2 class="titles">search for puns: </h2> -->
@@ -23,7 +23,7 @@
 
     <!-- <div id="puns_section"> -->
       {%for post in posts%}
-        <div class="pun container">
+        <div class="post container">
           <span class="col-xs-1 score">
             <span id="likes"> <strong>{{post.score}}</strong></span>
             <form class="like_container" action="/browse" method="post">

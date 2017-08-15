@@ -1,27 +1,42 @@
-#homeblurb {
-  text-align: center;
-  margin-top: 50px;
-}
-
-#homephoto {
-  display: block;
-  margin: auto;
-  box-shadow: 5px 5px 5px #333;
-  border: 5px solid black;
+light {
+  --light: #D7CEC7;
 }
 
 body {
-  background-image: url("/resources/images/background.jpg");
+  background-color: #A5C1C0;
   font-style: normal;
-  font-family: "Comic Sans MS";
+  font-family: "Verdana";
+  margin: 0 5%;
+}
+
+/*
+  light: #D7CEC7
+  dark: #565656
+*/
+
+.form {
+  display: inline;
+  padding: 0;
+}
+
+.score {
+  display: inline;
+  padding: 0;
+  /*background-color: red;*/
+  height: 100%;
+}
+
+.button {
+  display: inline;
 }
 
 .topnav {
-    background-color: #333;
+    background-color: #1A2930;
     overflow: hidden;
-    border-radius: 30px;
-    font-style: normal;
-    font-family: "Comic Sans MS";
+    font-family: "Verdana";
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 0 5px;
 }
 
 .topnav a {
@@ -31,158 +46,46 @@ body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    margin: 0 5px;
 }
 
 .topnav a:hover {
-    background-color: #ddd;
+    background-color: #F7CE3E;
     color: black;
 }
 
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
+    padding: 5px;
 }
 
-#puns_section {
-  background-color: #427477;
-  border: 10px solid black;
-  margin: 30px 10px 10px 20px;
-  border-radius: 30px;
+.post {
+  background-color: #f2f2f2;
+  border-bottom: 2px solid grey;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+
+}
+.score {
+  height: 100%;
 }
 
-div.puns_container {
-  background-color: transparent;
-  border-radius: 30px;
-  margin: 5px;
-  padding: 0px 0px 30px 5px;
-  border: 5px none black;
-  font-family: "Comic Sans MS";
-}
-
-h3.pun {
-  display: inline-block;
-}
-
-.pun {
-  font-style: normal;
-  font-family: "Comic Sans MS";
-  color: white;
-  background-color: black;
-  border-radius: 20px;
-  padding: 15px;
-  margin: 10px 10px 0px 0px;
-  word-wrap: break-word;
-}
-
-span.post_time {
-  font-style: normal;
-  font-family: "Comic Sans MS";
-  color: white;
-}
-
-.prompt_text {
-  font-style: normal;
-  font-family: "Comic Sans MS";
-}
-
-h1.prompt_text {
-  font-style: normal;
-  font-family: "Comic Sans MS";
-  font-size: 200%;
-  margin: 20px;
-  display: inline-block;
-}
-
-p.prompt_text {
-  font-style: normal;
-  font-family: "Comic Sans MS";
-  font-size: 200%;
-  padding-left: 10px;
-  margin: 20px;
-  display: inline-block;
-}
-
-h2.prompt_text {
-  margin-bottom: 10px
-}
-
-#search {
-  margin-bottom: 10px
-}
-#button {
-  margin: 10px;
-  margin-top: 0px;
-  padding: 5px 15px;
-  background: silver;
+.content {
   border: 1px solid black;
-  cursor: pointer;
-  border-radius: 30px;
-  display: inline-block;}
+  margin: 4px;
 
-.button {
-  margin: 10px;
-  margin-top: 0px;
-  padding: 5px 15px;
-  background: silver;
-  border: 1px solid black;
-  cursor: pointer;
-  border-radius: 30px;
-  display: inline-block;
 }
 
-.like_container {
-  display: inline-block;
+.data {
+  font-size: 12px;
+
 }
 
-#likes {
-  font-style: normal;
-  font-family: "Comic Sans MS";
-  padding-left: 10px;
-  display: inline-block;
+.author {
+
 }
 
-#map {
-  height: 400px;
-  width: 95%;
-  margin: 0 auto 0 auto;
-  border-radius: 30px;
-  border: 10px solid #333;
-}
-
-div.blurb {
-  background-color: white;
-  border: 10px solid #333;
-  border-radius: 30px;
-  margin: 20px 50px 30px 20px;
-  display: inline-block;
-  width: 600px
-}
-
-p.blurbtext {
-  font-size: 30px;
-  text-align: center;
-}
-
-#aboutimg {
-  margin: 30px 60px 0px 20px;
+.time {
   float: right;
-  border: 10px solid #333;
-  border-radius: 30px;
-}
-
-span.name {
-  font-size: 40px;
-  font-weight: bold;
-  color: navy;
-}
-
-h1.about {
-  text-align: center;
-}
-
-.titles {
-  font-style: normal;
-  font-family: "Comic Sans MS";
-  background-color:
 }
