@@ -34,8 +34,6 @@ class MainHandler(webapp2.RequestHandler):
                 )
                 us.put()
 
-        # create user Model
-
         vars = {
             'data': user,
             'greeting': greeting
@@ -87,9 +85,6 @@ class ProfileHandler(webapp2.RequestHandler):
         }
         self.response.write(template.render(vars))
 
-
-
-
 class PostHandler(webapp2.RequestHandler):
     def get(self):
         template = env.get_template('post.html')
@@ -110,25 +105,46 @@ class PostHandler(webapp2.RequestHandler):
 
         user.posts.insert(0, key)
 
-        def redirect():
-            self.redirect('/browse')
-
         user.put()
         time.sleep(.2)
-        redirect()
+        self.redirect('/browse')
 
 
 class BrowseHandler(webapp2.RequestHandler):
     def display_page(self, query):
         template = env.get_template('browse.html')
 
-        result = query.fetch(limit = 10);
+        results = query.fetch(limit = 10)
 
-        # if additional: # check if already contains
-        #     result.insert(0, additional)
+        def to_string(value, time):
+            return '%s %s%s ago' % (
+                str(int(value)),
+                time,
+                's' if value > 1 else ''
+            )
+
+        now = datetime.now()
+        for result in results:
+            w = divmod((now-result.time).total_seconds(),60*60*24*7)  # days
+            d = divmod(w[1],86400)  # days
+            h = divmod(d[1],3600)  # hours
+            m = divmod(h[1],60)  # minutes
+            s = m[1]  # seconds
+            if w[0] > 0:
+                result.timediff = str(int(w[0])) + ' weeks ago'
+            elif d[0] > 0:
+                result.timediff = str(int(d[0])) + ' days ago'
+            elif h[0] > 0:
+                result.timediff = to_string(h[0], 'hour')
+            elif m[0] > 1:
+                result.timediff = to_string(m[0], 'minute')
+            else:
+                result.timediff = 'moments ago'
+
+
 
         template_data = {
-            'posts': result
+            'posts': results
         }
         self.response.write(template.render(template_data))
 

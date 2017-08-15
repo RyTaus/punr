@@ -2,38 +2,34 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/styles/styles.css">
+
     <title>Browse Posts</title>
   </head>
   <body>
-    <div class="topnav" id="myTopnav">
-      <a href="/">Home</a>
-      <a href="/browse">Browse</a>
-      <a href="/post">Post</a>
-      <a href="/profile">Profile</a>
-      <a href="/about">About</a>
-    </div>
+    {% include "navbar.html" %}
 
-    <div>
-      <form action="/browse" method="post">
-        <input type="hidden" name="kind" value="search"></input>
-        <h2 class="titles">search for puns: </h2>
-        <input id="search" type="text" name="q" value=""></input>
-        <br>
-        <input id="button" type="submit" value="search"></input>
-      </form>
 
     <!-- <div id="puns_section"> -->
       {%for post in posts%}
-        <div class="puns_container">
-          <h3 class="pun">{{ post.poster_name }} </h3> <span class="post_time">@ {{ post.time }} </span>
-          <p class="pun"> {{ post.content }} </p>
-          <h3 id="likes"> {{post.score}}</h3>
-          <form class="like_container" action="/browse" method="post">
-            <input type="hidden" name="kind" value="upvote"></input>
-            <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
-            <input class="button" type="submit" value="like"></input>
-          </form>
+        <div class="post container">
+          <span class="col-xs-1 score">
+            <span id="likes"> <strong>{{post.score}}</strong></span>
+            <form class="like_container" action="/browse" method="post">
+              <input type="hidden" name="kind" value="upvote"></input>
+              <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
+              <input class="button" type="submit" value="^"></input>
+            </form>
+          </span>
+          <span class="col-xs-11">
+            <p class="content"> {{ post.content }} </p>
+            <div class="data">
+              <span class="author"> {{ post.poster_name }} </span>
+              <span class="time"> {{ post.timediff }} </span>
+
+            </div>
+          </span>
         </div>
       {% endfor %}
     <!-- </div> -->

@@ -7,13 +7,7 @@
   </head>
   <body>
     <!-- Maybe go to own page then redirect idk -->
-    <div class="topnav" id="myTopnav">
-      <a href="/">Home</a>
-      <a href="/browse">Browse</a>
-      <a href="/post">Post</a>
-      <a href="/profile">Profile</a>
-      <a href="/about">About</a>
-    </div>
+    {% include "navbar.html" %}
 
     <form action="/post" method="post">
       <h2 class="titles">Comment:</h2>
