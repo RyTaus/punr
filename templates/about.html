@@ -1,47 +1,40 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/resources/styles/styles.css">
-    <title>About Us</title>
-  </head>
+{% extends "common.html" %}
+{% block title %}About{% endblock %}
 
-  <body>
-    {% include "navbar.html" %}
+{% block content %}
 
-    <h1 class="titles">Behold, wherein lies the stronghold from which Compundium emerged </h1>
-    <div id="map"></div>
-       <script src="/resources/scripts/scripts.js">
-       </script>
-       <script async defer
-       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRioR5l9DuiKD5YXVsgKxuf1CVGrrMkSw&callback=initMap">
-       </script>
+<h1 class="titles">Behold, wherein lies the stronghold from which Compundium emerged </h1>
+<div id="map"></div>
+   <script src="/resources/scripts/scripts.js">
+   </script>
+   <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRioR5l9DuiKD5YXVsgKxuf1CVGrrMkSw&callback=initMap">
+   </script>
 
-    <h1 class="about">The creators: </h1>
-    <img id="aboutimg" src="/resources/images/tas.jpg" height="700px">
-    <div class = "blurb">
-      <p class="blurbtext">
-        <a class="name" href="https://www.facebook.com/CapnSquirrel">Alejandro</a> <br>
-        Major: Computer Science <br>
-        Class: 2019 <br>
-        Likes: Anime, Animation
-      </p>
-    </div>
-    <div class = "blurb">
-      <p class="blurbtext">
-        <a class="name" href="https://www.facebook.com/ryan.c.taus">Ryan</a> <br>
-        Major: Computer Science <br>
-        Class: 2018 <br>
-        Likes: physics
-      </p>
-    </div>
-    <div class = "blurb">
-      <p class = "blurbtext">
-        <a class="name" href="https://www.facebook.com/eshoj324">Emily</a> <br>
-        Major: Computer Science <br>
-        Class: 2019 <br>
-        Likes: kpop
-      </p>
-    <div>
-  </body>
-</html>
+<h1 class="about">The creators: </h1>
+<img id="aboutimg" src="/resources/images/tas.jpg" height="700px">
+<div class = "blurb">
+  <p class="blurbtext">
+    <a class="name" href="https://www.facebook.com/CapnSquirrel">Alejandro</a> <br>
+    Major: Computer Science <br>
+    Class: 2019 <br>
+    Likes: Anime, Animation
+  </p>
+</div>
+<div class = "blurb">
+  <p class="blurbtext">
+    <a class="name" href="https://www.facebook.com/ryan.c.taus">Ryan</a> <br>
+    Major: Computer Science <br>
+    Class: 2018 <br>
+    Likes: physics
+  </p>
+</div>
+<div class = "blurb">
+  <p class = "blurbtext">
+    <a class="name" href="https://www.facebook.com/eshoj324">Emily</a> <br>
+    Major: Computer Science <br>
+    Class: 2019 <br>
+    Likes: kpop
+  </p>
+<div>
+{% endblock %}

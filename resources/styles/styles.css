@@ -14,21 +14,14 @@ body {
   dark: #565656
 */
 
-.form {
-  display: inline;
+/*.form {
+  display: inline-block;
   padding: 0;
-}
+}*/
 
-.score {
+/*.button {
   display: inline;
-  padding: 0;
-  /*background-color: red;*/
-  height: 100%;
-}
-
-.button {
-  display: inline;
-}
+}*/
 
 .topnav {
     background-color: #1A2930;
@@ -37,6 +30,8 @@ body {
     margin-top: 10px;
     margin-bottom: 20px;
     padding: 0 5px;
+    /*position: fixed;*/
+
 }
 
 .topnav a {
@@ -60,26 +55,55 @@ body {
     padding: 5px;
 }
 
+
 .post {
   background-color: #f2f2f2;
-  border-bottom: 2px solid grey;
+  /*border-bottom: 2px solid grey;*/
   margin-bottom: 5px;
   padding-bottom: 5px;
 
 }
+
+.stuff {
+  /*position: relative;*/
+  /*left: 10%;*/
+  /*float: right;*/
+
+}
+
 .score {
   height: 100%;
+  /*position: relative;*/
+  top: 10%;
+  /*margin: 10px;*/
+  /*width: 10%;*/
+  /*float: left;*/
+  /*margin-top: 30px;*/
 }
 
 .content {
-  border: 1px solid black;
-  margin: 4px;
+  margin: 0px;
+  padding: 0px;
+  height: 80%;
+  width: 85%;
+  /*margin-top: -10px;*/
 
 }
 
+.like_container {
+  width: 10%;
+  margin: 0;
+  display: inline;
+}
+
 .data {
+  border-top: 2px solid #1A2930;
   font-size: 12px;
 
+}
+
+.hidden {
+  display: inline;
 }
 
 .author {

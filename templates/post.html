@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-  <link rel="stylesheet" href="/resources/styles/styles.css">
-    <title>Make A Post</title>
-  </head>
-  <body>
-    <!-- Maybe go to own page then redirect idk -->
-    {% include "navbar.html" %}
+{% extends "common.html" %}
+{% block title %}Post{% endblock %}
 
-    <form action="/post" method="post">
-      <h2 class="titles">Comment:</h2>
-      <textArea type="text" name="content" placeholder="Comment..." maxlength="140" rows="5" cols="40"></textArea>
-      <br>
-      <h3 class="prompt_text">Words Punned (split by commas):</h3>
-      <input type="text" name="keywords"></input>
-      <br>
-      <input class="button" type="submit" value="Submit"></input>
 
-    </form>
-  </body>
-</html>
+{% block content %}
+<form action="/post" method="post">
+  <h2 class="titles">Comment:</h2>
+  <textArea type="text" name="content" placeholder="Comment..." maxlength="140" rows="5" cols="40"></textArea>
+  <br>
+  <h3 class="prompt_text">Words Punned (split by commas):</h3>
+  <input type="text" name="keywords"></input>
+  <br>
+  <input id="confirm" class="button" type="submit" value="Submit"></input>
+
+</form>
+{% endblock %}

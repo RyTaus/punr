@@ -1,10 +1,14 @@
 import webapp2
 import jinja2
+# import jinja2.ext.with_
+import time
+import json
+
 from post import Post
 from user import User
 from google.appengine.api import users
-import time
 from datetime import datetime
+
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
@@ -60,8 +64,8 @@ class ProfileHandler(webapp2.RequestHandler):
         template = env.get_template('profile.html')
 
         u = users.get_current_user().email()
-        u = User.query(User.email == u).fetch()
-        posts = [p.get() for p in u[0].posts]
+        u = User.query(User.email == u).get()
+        posts = [p.get() for p in u.posts]
 
         vars = {
             'posts': posts,
@@ -91,6 +95,8 @@ class PostHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
     def post(self):
+        data = self.request.get('data')
+
         post = Post(
             content=self.request.get('content'),
             words_punned= [kw.strip().lower() for kw in self.request.get('keywords').split(',')],
@@ -106,8 +112,17 @@ class PostHandler(webapp2.RequestHandler):
         user.posts.insert(0, key)
 
         user.put()
+
+        # self.response.headers['Content-Type'] = 'application/json'
+        obj = {
+            'name': self.request.get('name') + '!'
+        };
+        # return
         time.sleep(.2)
+        # self.response.out.write(json.dumps(obj))
         self.redirect('/browse')
+
+        return
 
 
 class BrowseHandler(webapp2.RequestHandler):
@@ -131,9 +146,9 @@ class BrowseHandler(webapp2.RequestHandler):
             m = divmod(h[1],60)  # minutes
             s = m[1]  # seconds
             if w[0] > 0:
-                result.timediff = str(int(w[0])) + ' weeks ago'
+                result.timediff = to_string(w[0], 'week')
             elif d[0] > 0:
-                result.timediff = str(int(d[0])) + ' days ago'
+                result.timediff = to_string(d[0], 'day')
             elif h[0] > 0:
                 result.timediff = to_string(h[0], 'hour')
             elif m[0] > 1:
@@ -154,6 +169,7 @@ class BrowseHandler(webapp2.RequestHandler):
         self.display_page(query)
 
     def post(self):
+
         query = Post.query()
 
         if (self.request.get('kind') == 'upvote'):
@@ -173,6 +189,7 @@ class BrowseHandler(webapp2.RequestHandler):
             query = Post.query(Post.words_punned == str(self.request.get('q')).strip().lower())
 
         query = query.order(-Post.time)
+
 
         self.display_page(query)
 

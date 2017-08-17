@@ -1,0 +1,18 @@
+<div class="post container">
+  <span class="col-xs-1 score">
+    <span id="likes"> <strong>{{post.score}}</strong></span>
+    <form class="like_container" action="/browse" method="post">
+      <input class='hidden' type="hidden" name="kind" value="upvote"></input>
+      <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
+      <input class="button" type="submit" value="^"></input>
+    </form>
+  </span>
+  <span class="col-xs-11 stuff">
+    <p class="content"> {{ post.content }} </p>
+    <div class="data">
+      <span class="author"> {{ post.poster_name }} </span>
+      <span class="time"> {{ post.timediff }} </span>
+
+    </div>
+  </span>
+</div>

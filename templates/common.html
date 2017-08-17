@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/styles/styles.css">
+    {% block head %}{% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <div class="topnav container" id="myTopnav">
+      <a href="/">Home</a>
+      <a href="/browse">Browse</a>
+      <a href="/post">Post</a>
+      <a href="/profile">Profile</a>
+      <a href="/about">About</a>
+    </div>
+    {% block content %}{% endblock %}
+
+
+  </body>
+</html>
