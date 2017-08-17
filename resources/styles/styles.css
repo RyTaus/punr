@@ -23,6 +23,10 @@ body {
   display: inline;
 }*/
 
+.map {
+  height: 300px;
+}
+
 .topnav {
     background-color: #1A2930;
     overflow: hidden;
@@ -100,6 +104,25 @@ body {
   border-top: 2px solid #1A2930;
   font-size: 12px;
 
+}
+
+.homeblurb {
+  margin: auto;
+}
+
+.titles {
+  margin: auto;
+  text-align: center;
+}
+
+.homephoto {
+  display: block;
+  margin: auto;
+  width: 40%;
+}
+
+.form {
+  display: inline;
 }
 
 .hidden {

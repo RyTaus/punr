@@ -4,6 +4,7 @@
 {% block content %}
 
 <h1 class="titles"> Profiles </h1>
+<h2 class="prompt_text">Score: {{score}} </h2>
 
 <form action="/profile" method="post">
   <input type="hidden" name="target" value="view posts"></input>
@@ -14,7 +15,7 @@
   <input type="hidden" name="target" value="view liked posts"></input>
   <input class="button" type="submit"value="view liked posts"></input>
 </form>
-<p class="prompt_text">Score: {{score}} </p>
+<br>
 
 
 {%for post in posts%}
