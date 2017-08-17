@@ -19,12 +19,16 @@ body {
   padding: 0;
 }*/
 
-/*.button {
-  display: inline;
-}*/
+.button {
+  background-color:  #1A2930;
+  color: #f2f2f2;
+  margin: 1px solid black;
+}
 
-.map {
-  height: 300px;
+.button:hover {
+  background-color: #F7CE3E;
+  color: black;
+  
 }
 
 .topnav {

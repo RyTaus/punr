@@ -61,6 +61,8 @@ class MainHandler(webapp2.RequestHandler):
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
+        if not users.get_current_user():
+            self.redirect('/main')
         template = env.get_template('profile.html')
 
         u = users.get_current_user().email()
@@ -91,6 +93,8 @@ class ProfileHandler(webapp2.RequestHandler):
 
 class PostHandler(webapp2.RequestHandler):
     def get(self):
+        if not users.get_current_user():
+            self.redirect('/main')
         template = env.get_template('post.html')
         self.response.write(template.render())
 
@@ -164,6 +168,8 @@ class BrowseHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_data))
 
     def get(self):
+        if not users.get_current_user():
+            self.redirect('/main')
         query = Post.query()
         query = query.order(-Post.time)
         self.display_page(query)
