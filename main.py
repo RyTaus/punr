@@ -1,6 +1,5 @@
 import webapp2
 import jinja2
-# import jinja2.ext.with_
 import time
 import json
 
@@ -65,11 +64,13 @@ class ProfileHandler(webapp2.RequestHandler):
             self.redirect('/main')
         template = env.get_template('profile.html')
 
-        u = users.get_current_user().email()
+        u = self.request.get('username') or users.get_current_user().email()
+        # self.response.write(u)
         u = User.query(User.email == u).get()
         posts = [p.get() for p in u.posts]
 
         vars = {
+            'user': u,
             'posts': posts,
             'score': sum( [p.score for p in posts] )
         }
@@ -77,17 +78,18 @@ class ProfileHandler(webapp2.RequestHandler):
 
     def post(self):
         template = env.get_template('profile.html')
-        u = users.get_current_user().email()
-        u = User.query(User.email == u).fetch()
+        u = self.request.get('username') or users.get_current_user().email()
+        u = User.query(User.email == u).get()
         posts = None
         if (self.request.get('target') == 'view liked posts'):
-            posts = [p.get() for p in u[0].posts_liked]
+            posts = [p.get() for p in u.posts_liked]
         else:
-            posts = [p.get() for p in u[0].posts]
+            posts = [p.get() for p in u.posts]
 
         vars = {
+            'user': u,
             'posts': posts,
-            'score': sum( [p.score for p in [p.get() for p in u[0].posts]] )
+            'score': sum( [p.score for p in [p.get() for p in u.posts]] )
         }
         self.response.write(template.render(vars))
 
