@@ -2,11 +2,13 @@ import webapp2
 import jinja2
 import time
 import json
-
 from post import Post
 from user import User
 from google.appengine.api import users
 from datetime import datetime
+
+# Create JSON dumps
+# Create React frontend and call the endpoints localhost:8080/browse, etc.
 
 
 env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
@@ -18,6 +20,7 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         logout_url = users.create_logout_url('/')
         login_url = users.create_login_url('/')
+        print(user)
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                 (user.email(), logout_url))
@@ -41,6 +44,12 @@ class MainHandler(webapp2.RequestHandler):
             'data': user,
             'greeting': greeting
         }
+        # self.response.headers['Content-Type'] = 'application/json'
+        self.response.headers.add_header('Access-Control-Allow-Origin', '*')
+        self.response.headers.add_header('Access-Control-Allow-Headers', 'Content-Type')
+        # print(self.response.headers)
+        # self.response.write(user)
+
         self.response.write(template.render(vars))
 
     def post(self):
@@ -55,8 +64,9 @@ class MainHandler(webapp2.RequestHandler):
                 posts=[]
             )
             us.put()
-        self.response.write(us)
-        # self.redirect('/')
+        print(us)
+        # self.response.write(us)
+        self.redirect('/')
 
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
@@ -74,6 +84,9 @@ class ProfileHandler(webapp2.RequestHandler):
             'posts': posts,
             'score': sum( [p.score for p in posts] )
         }
+        print(vars)
+        # self.response.headers['Content-Type'] = 'application/json'
+
         self.response.write(template.render(vars))
 
     def post(self):
@@ -91,7 +104,9 @@ class ProfileHandler(webapp2.RequestHandler):
             'posts': posts,
             'score': sum( [p.score for p in [p.get() for p in u.posts]] )
         }
-        self.response.write(template.render(vars))
+        print(vars)
+
+        self.response.write(vars)
 
 class PostHandler(webapp2.RequestHandler):
     def get(self):
@@ -122,7 +137,7 @@ class PostHandler(webapp2.RequestHandler):
         # self.response.headers['Content-Type'] = 'application/json'
         obj = {
             'name': self.request.get('name') + '!'
-        };
+        }
         # return
         time.sleep(.2)
         # self.response.out.write(json.dumps(obj))
@@ -132,9 +147,10 @@ class PostHandler(webapp2.RequestHandler):
 
 
 class BrowseHandler(webapp2.RequestHandler):
+  
+
     def display_page(self, query):
         template = env.get_template('browse.html')
-
         results = query.fetch(limit = 10)
 
         def to_string(value, time):
@@ -167,8 +183,17 @@ class BrowseHandler(webapp2.RequestHandler):
         template_data = {
             'posts': results
         }
+
         self.response.write(template.render(template_data))
 
+        # self.response.headers['Content-Type'] = 'application/json'   
+        # obj = {
+        #     'success': 'some var', 
+        #     'payload': 'some var',
+        # }
+        # JSON dump
+        # self.response.out.write(json.dumps(obj))  
+        
     def get(self):
         if not users.get_current_user():
             self.redirect('/main')

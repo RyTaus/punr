@@ -3,17 +3,23 @@
 
 {% block content %}
 
-<span class="container">
-  <form action="/browse" method="post">
-    <input type="hidden" name="kind" value="search"></input>
-    <input id="search" type="text" name="q" placeholder='Search...' value=""></input>
-    <input class="button" id="button" type="submit" value="Search"></input>
-  </form>
-</span>
-<br>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
 
-  {%for post in posts%}
-      {% include "pun.html" %}
-  {% endfor %}
+<script src="../resources/scripts/Browse.js" type="text/babel"></script>
+<script type="text/babel">
+    ReactDOM.render(
+    <Browse>
+      <div>
+        {%for post in posts%}
+          {% include "pun.html" %}
+        {% endfor %}
+      </div>
+    </Browse>,
+    document.getElementById('root')
+    );
+</script>
 
 {% endblock %}

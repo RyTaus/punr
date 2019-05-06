@@ -1,16 +1,21 @@
 {% extends "common.html" %}
-{% block title %}Browse{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
 
-<p> {{greeting}} </p>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
 
-<div id="homeblurb">
-  <h1 class="titles"> Welcome to Compundium! </h1>
-  <br>
-  <h2 class="titles"> A site for lovers of the pun. Share and like other puns to your heart's puntent. </h2>
-</div>
-<br>
-<img class="center-block" id = "homephoto" src="/resources/images/no_pun_intended.png">
+<script src="../resources/scripts/Home.js" type="text/babel"></script>
+<script type="text/babel">
+  ReactDOM.render(
+      <Home>
+        {greeting}
+      </Home>,
+      document.getElementById('root')
+  );
+</script>
 
 {% endblock %}
