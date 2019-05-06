@@ -3,47 +3,24 @@
 
 {% block content %}
 
-<div id="root"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+<h1 class="titles"> Profiles </h1>
+<h2> {{user.email}} </h2>
+<h2 class="prompt_text">Score: {{score}} </h2>
+
+<form action="/profile" method="post">
+  <input type="hidden" name="target" value="view posts"></input>
+  <input class="button" type="submit"value="view your posts"></input>
+</form>
+
+<form action="/profile" method="post">
+  <input type="hidden" name="target" value="view liked posts"></input>
+  <input class="button" type="submit"value="view liked posts"></input>
+</form>
+<br>
 
 
-<script type="text/babel">
-class Profile extends React.Component {
-    render() {
-        return (
-          <div>
-            <h2> {{user.email}} </h2>
-            <h1 className="titles"> Profiles </h1>
-            <h2 className="prompt_text">Score: {{score}} </h2>
-
-
-            <form action="/profile" method="post">
-              <input type="hidden" name="target" value="view posts"></input>
-              <input className="button" type="submit"value="view your posts"></input>
-            </form>
-
-            <form action="/profile" method="post">
-              <input type="hidden" name="target" value="view liked posts"></input>
-              <input className="button" type="submit"value="view liked posts"></input>
-            </form>
-            <div>
-              {%for post in posts%}
-                {% include "pun.html" %}
-              {% endfor %}
-            </div>
-          </div>
-          
-        );
-    }
-}
-ReactDOM.render(
-    <Profile />,
-    document.getElementById('root')
-);
-</script>
-
-
+{%for post in posts%}
+  {% include "pun.html" %}
+{% endfor %}
 
 {% endblock %}
